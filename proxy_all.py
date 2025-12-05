@@ -1,4 +1,3 @@
-# proxy.py 终极版 - 支持 IAM + IoTDA + 任意华为云服务
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import requests
 
