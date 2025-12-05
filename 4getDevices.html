@@ -52,7 +52,7 @@
             // 追加到页面
             div.innerHTML += '<br>' + line;
             div.scrollTop = div.scrollHeight;
-            // 同时保存到本地（永不丢失）
+            // 同时保存到本地
             let history = JSON.parse(localStorage.getItem(LOG_KEY) || '[]');
             history.push(line);
             localStorage.setItem(LOG_KEY, JSON.stringify(history));
@@ -90,7 +90,7 @@
                                     }
                                 }
                             },
-                            scope: { project: { name: "cn-north-1" } }
+                            scope: { project: { name: "" } }
                         }
                     })
                 });
@@ -152,7 +152,7 @@
             }
         }
 
-        //获取单个设备的影子状态（Shadow）
+        //获取单个设备的影子状态
         async function step4_getDeviceShadow() {
             if (!token) return alert('请先获取 Token！');
             const deviceId = prompt('请输入要查询的设备ID', 'IoTDev01')?.trim();
@@ -164,7 +164,7 @@
                 });
                 const projData = await projResp.json();
                 const correctProject = projData.projects.find(p => p.name === 'cn-south-1');
-                if (!correctProject) throw new Error('未找到 cn-south-1 的项目');
+                if (!correctProject) throw new Error('未找到项目');
                 const realProjectID = correctProject.id;
                 log(`使用 cn-south-1 项目ID：${realProjectID}`);
                 const realUrl = `https://${shadowEndpoint}/v5/iot/${realProjectID}/devices/${deviceId}/shadow`;
